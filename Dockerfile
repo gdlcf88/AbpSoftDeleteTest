@@ -4,10 +4,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
-COPY ["AbpSoftDeleteTest.Web/AbpSoftDeleteTest.Web.csproj", "AbpSoftDeleteTest.Web/"]
-RUN dotnet restore "AbpSoftDeleteTest.Web/AbpSoftDeleteTest.Web.csproj"
+COPY ["/src/AbpSoftDeleteTest/AbpSoftDeleteTest.Web/AbpSoftDeleteTest.Web.csproj", "/src/AbpSoftDeleteTest/AbpSoftDeleteTest.Web/"]
+RUN dotnet restore "/src/AbpSoftDeleteTest/AbpSoftDeleteTest.Web/AbpSoftDeleteTest.Web.csproj"
 COPY . .
-WORKDIR "/src/AbpSoftDeleteTest.Web"
+WORKDIR "/src/AbpSoftDeleteTest/AbpSoftDeleteTest.Web"
 RUN dotnet build "AbpSoftDeleteTest.Web.csproj" -c Release -o /app/build
 
 FROM build AS publish
